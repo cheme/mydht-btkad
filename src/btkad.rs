@@ -172,6 +172,10 @@ impl<A : Address, P : Peer<Address = A>, V : KeyVal, T : Transport<Address = A>,
     true
   }
 
+  fn next_random_peers(&mut self, nb : usize) -> Vec<Arc<P>> {
+    self.peers.next_random_values(nb)
+      .into_iter().map(|p|(p.0).clone()).collect()
+  }
 
 }
 
