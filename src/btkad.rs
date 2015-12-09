@@ -9,6 +9,7 @@ use mydht_base::peer::{Peer,PeerState,PeerStateChange};
 use std::sync::{Arc};
 //use std::sync::mpsc::{Sender,Receiver};
 use mydht_base::route::RouteBase;
+use mydht_base::route::is_peerinfo_online;
 use std::iter::Iterator;
 //use std::rc::Rc;
 use mydht_base::keyval::KeyVal;
@@ -173,7 +174,7 @@ impl<A : Address, P : Peer<Address = A>, V : KeyVal, T : Transport<Address = A>,
   }
 
   fn next_random_peers(&mut self, nb : usize) -> Vec<Arc<P>> {
-    self.peers.next_random_values(nb)
+    self.peers.next_random_values(nb, Some(&is_peerinfo_online))
       .into_iter().map(|p|(p.0).clone()).collect()
   }
 
