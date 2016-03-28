@@ -39,3 +39,4 @@ path = "../mydht-base/"
 
 [dependencies.bit-vec]
 git = "https://github.com/cheme/bit-vec.git"
+
